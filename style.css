@@ -51,6 +51,7 @@ body,
   color: #00ff11;
   margin: 10px;
   text-shadow: 0 0 5px #00ff11;
+  font-size: 30px;
 }
 
 
@@ -74,7 +75,6 @@ p {
 
 input[type="text"] {
   width: 180px;
-  font-size: 20px;
   padding: 0;
   margin: 0;
   border: none;
@@ -93,8 +93,8 @@ input[type="text"] {
     flex-direction:row;
     overflow-x:hidden;
     overflow-y: auto;
-    height: 500px;
-    width: 800px;
+    height: 800px;
+    width: 1000px;
     align-items: flex-start;
     justify-content: flex-start;
     align-content: flex-start;
