@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <h1>Fried Rat Wings</h1> -->
+
+    <div id="monitor">
+        <div id="console">
+            <div id="column1">
+                <div id="prefix">
+                    <p>>>  </p>
+                </div>
+                <div id="textPrefix">
+                    <p>>>  </p>
+                </div>
+            </div>
+            <div id="column2">
+                <div id="history">
+        
+                </div>
+                <p class="line-1 anim-typewriter" id="prompt">
+                    Riddle me this,
+                </p>
+                <p>
+                    <input type="text" spellcheck="false" autocomplete="off" 
+                    id="text" onkeypress="enterKeyPressed(event)" onblur="this.focus()" autofocus>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="script.js"></script>
+<script>
+    function enterKeyPressed(event) {
+      if (event.keyCode == 13) {
+         checkUnlock()
+         return true;
+      } else {
+         return false;
+      }
+   }
+</script>
+</html>
