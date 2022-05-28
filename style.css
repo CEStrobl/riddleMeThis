@@ -74,7 +74,7 @@ p {
 }
 
 input[type="text"] {
-  width: 180px;
+  width: 500px;
   padding: 0;
   margin: 0;
   border: none;
@@ -93,7 +93,7 @@ input[type="text"] {
     flex-direction:row;
     overflow-x:hidden;
     overflow-y: auto;
-    height: 800px;
+    height:800px;
     width: 1000px;
     align-items: flex-start;
     justify-content: flex-start;
@@ -114,7 +114,7 @@ input[type="text"] {
         rgba(0, 0, 0, 0.398) 75%,
         rgba(0, 0, 0, 0.25) 75%
     );
-    background-size: 100% 4px;
+    background-size: 200% 4px;
     z-index: 2;
     pointer-events: none;
 }
@@ -122,4 +122,11 @@ input[type="text"] {
 #column1, #column2, #history, #prefix{
     display: flex;
     flex-direction: column;
+}
+
+@media screen and (max-width: 600px) {
+  #console {
+    height:800px;
+    width: 1000px;
+  }
 }

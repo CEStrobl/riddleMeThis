@@ -3,6 +3,45 @@ let history = document.getElementById("history")
 let prompt = document.getElementById("prompt")
 let prefix = document.getElementById("prefix")
 
+
+let r1 = {
+    promptCount: 3,
+    promptA: "Riddle me this,",
+    promptB: "I have many, but you have none.",
+    promptC: "You can find them everywhere, but you can't get one.",
+
+    answers: ["women", "maidens",],
+
+    responseCount: 1,
+    responseA: "That's right.",
+}
+
+let r2 = {
+    promptCount: 1,
+    promptA: "You are almost as smart as Joe.",
+
+    answers: ["whos joe", "who's joe", "who's joe?",],
+
+    responseCount: 4,
+    responseA: "JOE MAMA!!!",
+    responseB: "HAHAHAHAHAHAHA!!!",
+    responseC: "YOU FELL FOR IT!!!",
+    responseD: "Ahem... Uh, anyway...",
+}
+
+let r3 = {
+    promptCount: 1,
+    promptA: "Who's that pokemon?",
+    answers: ["pikachu",],
+
+    responseCount: 1,
+    responseA: "Well done.",
+}
+
+let riddles = [
+    r1, r2, r3
+]
+
 function updateConsole(newPrompt, addInput, addArrow) {
     // Create p for previous prompt
     const previousPrompt = document.createElement("p");
@@ -62,28 +101,63 @@ setTimeout(updateConsole, 5000, "You can find them everywhere, but you can't get
 let unlockCount = 0
 
 let checkUnlock = function () {
-    if(unlockCount === 0 && text.value === "women") {
-        updateConsole("That's right, Batman.", 1, 1)
-        unlockCount++
-        setTimeout(updateConsole, 2500, "You are almost as smart as Joe.", 0, 0)
-    } 
-    
-    else if(unlockCount === 1 && text.value === "whos joe") {
-        updateConsole("JOE MAMA!!!", 1, 1)
-        unlockCount++
-        setTimeout(updateConsole, 2500, "HAHAHAHAHAHAHAHAH!!!", 0, 0)
-        setTimeout(updateConsole, 5000, "YOU FELL FOR IT!!!", 0, 0)
-        setTimeout(updateConsole, 7500, "Ahem... um... anyway...", 0, 0)
-        setTimeout(updateConsole, 10000, "Who's that Pokemon?", 0, 0)
-    }
+    let current = riddles[unlockCount]
 
-    else if(unlockCount === 2 && text.value === "pikachu") {
-        updateConsole("Well done.", 1, 1)
-        unlockCount++
-    }
-    
-    else {
-        text.value = ""
+    // loop over the answers to check if the response is one of multiple
+    for (let i = 0; i < current.answers.length; i++) {
+        // if the input matches one of the answers...
+        if(text.value === current.answers[i]) {
+            // check how many responses to give
+
+            let wait = 2500
+
+            if(current.responseCount === 1){
+                updateConsole(current.responseA, 1, 1)
+                unlockCount++
+            } 
+            else if(current.responseCount === 2){
+                updateConsole(current.responseA, 1, 1)
+                setTimeout(updateConsole, wait, current.responseB, 0, 0)
+                unlockCount++
+            } 
+            else if(current.responseCount === 3){
+                updateConsole(current.responseA, 1, 1)
+                setTimeout(updateConsole, wait, current.responseB, 0, 0)
+                setTimeout(updateConsole, wait+=2500, current.responseC, 0, 0)
+                unlockCount++
+            } 
+            else if(current.responseCount === 4){
+                updateConsole(current.responseA, 1, 1)
+                setTimeout(updateConsole, wait, current.responseB, 0, 0)
+                setTimeout(updateConsole, wait+=2500, current.responseC, 0, 0)
+                setTimeout(updateConsole, wait+=2500, current.responseD, 0, 0)
+                unlockCount++
+            }
+            current = riddles[unlockCount]
+
+            if(current.promptCount === 1){
+                updateConsole(current.promptA, 0, 1)
+            } 
+            else if(current.promptCount === 2){
+                updateConsole(current.promptA, 0, 1)
+                setTimeout(updateConsole, wait, current.promptB, 0, 0)
+            } 
+            else if(current.promptCount === 3){
+                updateConsole(current.promptA, 0, 1)
+                setTimeout(updateConsole, wait, current.promptB, 0, 0)
+                setTimeout(updateConsole, wait+=2500, current.promptC, 0, 0)
+            } 
+            else if(current.promptCount === 4){
+                updateConsole(current.promptA, 0, 1)
+                setTimeout(updateConsole, wait, current.promptB, 0, 0)
+                setTimeout(updateConsole, wait+=2500, current.promptC, 0, 0)
+                setTimeout(updateConsole, wait+=2500, current.promptD, 0, 0)
+            }
+        } 
+        else {
+            text.value = ""
+        }
+
     }
 }
 
